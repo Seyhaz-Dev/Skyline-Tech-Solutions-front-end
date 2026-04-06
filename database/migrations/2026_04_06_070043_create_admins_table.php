@@ -11,21 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('payments', function (Blueprint $table) {
+        Schema::create('admins', function (Blueprint $table) {
         $table->id();
-        $table->foreignId('lease_id')->constrained()->cascadeOnDelete();
-        $table->decimal('amount', 10, 2);
-        $table->date('payment_date');
-        $table->string('payment_method')->nullable();
-        $table->enum('status', ['paid', 'pending'])->default('pending');
+        $table->string('username')->unique();
+        $table->string('email')->unique();
+        $table->string('password');
+        $table->string('department')->nullable();
         $table->timestamps();
     });
+    
     }
+
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('admins');
     }
 };

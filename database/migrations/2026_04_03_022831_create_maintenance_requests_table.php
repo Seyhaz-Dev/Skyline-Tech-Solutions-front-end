@@ -11,10 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('maintenance_requests', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
-        });
+    Schema::create('maintenance_requests', function (Blueprint $table) {
+        $table->id();
+        $table->foreignId('tenant_id')->constrained()->cascadeOnDelete();
+        $table->foreignId('unit_id')->constrained()->cascadeOnDelete();
+        $table->string('title');
+        $table->text('description');
+        $table->enum('status', ['pending', 'in_progress', 'completed'])->default('pending');
+        $table->timestamps();
+    });
     }
 
     /**
