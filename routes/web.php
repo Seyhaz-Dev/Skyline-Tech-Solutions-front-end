@@ -1,11 +1,16 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\RentsController;
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/hello', function () {
-    return view('hello');
+Route::get('/leases', function () {
+    return view('leases');
 });
+
+Route::get('/test',function(){
+    return view("layouts.test");
+});
+
+Route::get('/rents',[RentsController::class, 'index']);
