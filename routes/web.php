@@ -20,3 +20,6 @@ Route::get('/header', function () {
 });
 Route::get('/rent', [RentController::class, 'index']);
     
+Route::get('/login', function () {
+    return view('components.login');
+});
