@@ -23,3 +23,6 @@ Route::get('/rent', [RentController::class, 'index']);
 Route::get('/login', function () {
     return view('components.login');
 });
+Route::get('/register', function () {
+    return view('components.register');
+});
