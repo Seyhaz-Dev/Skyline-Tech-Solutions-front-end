@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard.index', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
 Route::get('/rents',[RentsController::class, 'index']);
