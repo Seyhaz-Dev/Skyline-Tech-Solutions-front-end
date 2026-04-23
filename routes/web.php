@@ -3,9 +3,10 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\RentsController;
 use App\Http\Controllers\DashboardController;
-
+use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\RentController;
 use Symfony\Component\Mailer\Transport\RoundRobinTransport;
+
 
 
 Route::get('/', function () {
@@ -35,5 +36,7 @@ Route::get('/header', function () {
     return view('layouts.header');
 });
 Route::get('/rent', [RentController::class, 'index']);
-    
+
+Route::get('/properties', [PropertiesController::class, 'index']);
+
 
