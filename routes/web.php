@@ -21,6 +21,7 @@ Route::get('/test',function(){
     return view("layouts.test");
 });
 
+Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
 Route::get('/rents',[RentsController::class, 'index']);
 
 Route::get('/dashboard',[DashboardController::class, 'index']);
