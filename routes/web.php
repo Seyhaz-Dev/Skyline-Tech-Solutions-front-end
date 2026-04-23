@@ -11,6 +11,7 @@ use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\UserController;
 use App\Models\Tenant;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,6 +19,8 @@ Route::get('/', function () {
 
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
+Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
+Route::get('/rents',[RentsController::class, 'index']);
 
 Route::resource('properties', PropertyController::class);
 Route::resource('tenants', TenantController::class);
@@ -27,7 +30,16 @@ Route::resource('maintenance', MaintenanceRequestController::class);
 Route::resource('users', UserController::class);
 
 
-Route::get('/rents', [RentsController::class, 'index'])->name('rents.index');
+Route::get('/hello', function () {
+    return view('hello');
+});
+Route::get('/header', function () {
+    return view('layouts.header');
+});
+Route::get('/rent', [RentController::class, 'index']);
+
+Route::get('/properties', [PropertiesController::class, 'index']);
+
 
 
 Route::get('/contact', fn() => view('contact'));
