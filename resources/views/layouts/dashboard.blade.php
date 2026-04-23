@@ -6,7 +6,7 @@
     <title>Dashboard</title>
 </head>
 <body>
-    @extends('layouts.app')
+    @extends('components.sidebar')
     
     <div class="flex bg-gray-300 items-center border-b gap-4 p-2 justify-between px-5">
        <div> 
@@ -63,3 +63,4 @@
 @endsection
 </body>
 </html>
+

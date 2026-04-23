@@ -1,30 +1,41 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
-dareboard
-use App\Http\Controllers\RentsController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\LeasesController;
+use App\Http\Controllers\MaintenanceRequestController;
+use App\Http\Controllers\RentsController;
+use App\Http\Controllers\PaymentController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-use App\Http\Controllers\RentController;
-use Symfony\Component\Mailer\Transport\RoundRobinTransport;
-
-master
+// Home
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
- dareboard
+// Dashboard (ONLY ONE)
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// Leases
 Route::get('/leases', function () {
     return view('leases');
-});
+})->name('leases.index');
 
-Route::get('/test',function(){
-    return view("layouts.test");
-});
+// Rents
+Route::get('/rents', [RentsController::class, 'index'])->name('rents.index');
 
-Route::get('/rents',[RentsController::class, 'index']);
+// Payments (IMPORTANT)
+Route::get('/payments', function () {
+    return view('payments.index');
+})->name('payments.index');
 
-Route::get('/dashboard',[DashboardController::class, 'index']);
+Route::post('/payments', [PaymentController::class, 'store'])->name('payments.store');
 
+// Other pages
 Route::get('/contact', function () {
     return view('contact');
 });
@@ -32,9 +43,11 @@ Route::get('/contact', function () {
 Route::get('/hello', function () {
     return view('hello');
 });
+
 Route::get('/header', function () {
     return view('layouts.header');
 });
-Route::get('/rent', [RentController::class, 'index']);
-    
- master
+
+Route::get('/test', function () {
+    return view('layouts.test');
+});
