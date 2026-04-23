@@ -7,6 +7,7 @@
     <title>Jinlong PMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Icons -->
+     
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
@@ -83,7 +84,7 @@
 
                 <!-- Logout -->
                 <button class="w-full flex items-center gap-3 p-2 rounded-lg bg-slate-700 hover:bg-slate-600">
-                    <i data-lucide="log-out"></i>
+                    <a href="/login"></a>
                     Logout
                 </button>
 

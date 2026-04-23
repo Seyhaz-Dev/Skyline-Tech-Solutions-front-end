@@ -9,7 +9,7 @@ use App\Http\Controllers\TenantController;
 use App\Http\Controllers\LeaseController;
 use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\UserController;
-use App\Models\Tenant;
+use App\Http\Controllers\AuthController;
 
 
 Route::get('/', function () {
@@ -45,3 +45,14 @@ Route::get('/contact', fn() => view('contact'));
 Route::get('/hello', fn() => view('hello'));
 Route::get('/header', fn() => view('layouts.header'));
 Route::get('/test', fn() => view('layouts.test'));
+
+
+// Redirect root to login page
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+// Login/Logout routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
