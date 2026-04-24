@@ -17,7 +17,7 @@
     <div class="flex min-h-screen">
 
         <!-- Sidebar -->
-        <aside class="w-64 bg-slate-900 text-gray-300 flex flex-col justify-between p-4">
+        <aside class="w-64 bg-slate-900 text-gray-300 flex flex-col justify-between p-4 z-10">
 
             <!-- Top -->
             <div>
