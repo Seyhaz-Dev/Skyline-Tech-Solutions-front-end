@@ -7,37 +7,27 @@ use Illuminate\Http\Request;
 
 class PropertyController extends Controller
 {
-    // Get all properties
     public function index()
     {
-        return Property::all();
-    }
+        $modern = 'Modern Downtown Loft';
+        $location = 'China';
+        $room = '3 Beds';
+        $tworoom = '2 Baths';
+        $number = '1,850 sqft';
+        $total = '$1,250,000';
+        $image = 'images/property.jpg';
 
-    // Store new property
-    public function store(Request $request)
-    {
-        return Property::create($request->all());
-    }
-
-    // Get single property
-    public function show($id)
-    {
-        return Property::findOrFail($id);
-    }
-
-    // Update property
-    public function update(Request $request, $id)
-    {
-        $property = Property::findOrFail($id);
-        $property->update($request->all());
-
-        return $property;
-    }
-
-    // Delete property
-    public function destroy($id)
-    {
-        Property::destroy($id);
-        return response()->json(['message' => 'Deleted successfully']);
+        return view(
+            'properties.index',
+            compact(
+                'modern',
+                'location',
+                'room',
+                'tworoom',
+                'number',
+                'total',
+                'image'
+            )
+        );
     }
 }

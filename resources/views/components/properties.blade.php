@@ -1,4 +1,4 @@
-<div class="bg-white p-4 shadow rounded">
+<!-- <div class="bg-white p-4 shadow rounded">
 
     <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
      class="w-full h-48 object-cover">
@@ -317,4 +317,4 @@
     </p>
     <br>
     <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
+</div> -->
