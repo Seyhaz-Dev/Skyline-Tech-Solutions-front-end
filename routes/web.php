@@ -38,7 +38,7 @@ Route::get('/header', function () {
 });
 Route::get('/rent', [RentsController::class, 'index']);
 
-Route::get('/properties', [PropertyController::class, 'index']);
+Route::get('/properties.index', [PropertyController::class, 'index']);
 
 
 Route::get('/contact', fn() => view('contact'));
