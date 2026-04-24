@@ -7,6 +7,7 @@
     <title>Jinlong PMS</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Icons -->
+
     <script src="https://unpkg.com/lucide@latest"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
@@ -30,8 +31,8 @@
 
                <nav class="space-y-2 text-sm">
 
-    <a href="{{ route('dashboard') }}"
-       class="block p-2 rounded-lg hover:bg-slate-700 {{ request()->routeIs('dashboard') ? 'bg-slate-700 text-white' : '' }}">
+    <a href="{{ route('dashboard.index') }}"
+       class="block p-2 rounded-lg hover:bg-slate-700 {{ request()->routeIs('dashboard.index') ? 'bg-slate-700 text-white' : '' }}">
         <i class="fa-solid fa-chart-column"></i>
         Dashboard
     </a>
@@ -83,8 +84,7 @@
 
                 <!-- Logout -->
                 <button class="w-full flex items-center gap-3 p-2 rounded-lg bg-slate-700 hover:bg-slate-600">
-                    <i data-lucide="log-out"></i>
-                    Logout
+                    <a href="{{ route('login') }}">Logout</a>
                 </button>
 
             </div>

@@ -9,15 +9,20 @@ use App\Http\Controllers\TenantController;
 use App\Http\Controllers\LeaseController;
 use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\UserController;
+properties
 use App\Models\Tenant;
 use App\Http\Controllers\PropertyController;
+
+use App\Http\Controllers\AuthController;
+
+ master
 
 Route::get('/', function () {
     return view('welcome');
 });
 
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard.index', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
 Route::get('/rents',[RentsController::class, 'index']);
@@ -47,3 +52,14 @@ Route::get('/contact', fn() => view('contact'));
 Route::get('/hello', fn() => view('hello'));
 Route::get('/header', fn() => view('layouts.header'));
 Route::get('/test', fn() => view('layouts.test'));
+
+
+// Redirect root to login page
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+// Login/Logout routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');

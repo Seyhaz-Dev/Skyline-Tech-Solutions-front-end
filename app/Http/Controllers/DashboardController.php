@@ -14,6 +14,6 @@ class DashboardController extends Controller
         $totalRevenue = 24567;
         $pageViews = 47325;
 
-        return view('layouts.dashboard', compact('totalUsers','totalOrders','totalRevenue','pageViews'));
+        return view('dashboard.index', compact('totalUsers','totalOrders','totalRevenue','pageViews'));
     }
 }
