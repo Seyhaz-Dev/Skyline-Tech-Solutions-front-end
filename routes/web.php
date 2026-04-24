@@ -4,13 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RentsController;
 use App\Http\Controllers\PaymentController;
-use App\Http\Controllers\PropertyController;
+use App\Http\Controllers\PropertiesController;
 use App\Http\Controllers\TenantController;
 use App\Http\Controllers\LeaseController;
 use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\UserController;
 use App\Models\Tenant;
-
+use App\Http\Controllers\PropertyController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,7 +22,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
 Route::get('/rents',[RentsController::class, 'index']);
 
-Route::resource('properties', PropertyController::class);
+Route::resource('properties', PropertiesController::class);
 Route::resource('tenants', TenantController::class);
 Route::resource('leases', LeaseController::class);
 Route::resource('payments', PaymentController::class);
@@ -38,7 +38,9 @@ Route::get('/header', function () {
 });
 Route::get('/rent', [RentsController::class, 'index']);
 
-Route::get('/properties', [PropertyController::class, 'index']);
+Route::get('/properties', [PropertiesController::class, 'index']);
+
+Route::get('/property',[PropertyController::class, 'index']);
 
 
 Route::get('/contact', fn() => view('contact'));

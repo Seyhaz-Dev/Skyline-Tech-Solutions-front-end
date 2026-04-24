@@ -36,7 +36,7 @@
         Dashboard
     </a>
 
-    <a href="{{ route('properties.index') }}"
+    <a href="/property"
        class="block p-2 rounded-lg hover:bg-slate-700 {{ request()->routeIs('properties.*') ? 'bg-slate-700 text-white' : '' }}">
         <i class="fa-regular fa-house"></i>
         Properties
