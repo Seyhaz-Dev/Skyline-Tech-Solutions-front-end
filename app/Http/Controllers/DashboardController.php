@@ -8,12 +8,18 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // Sample data
-        $totalUsers = 2500;
-        $totalOrders = 1240;
-        $totalRevenue = 24567;
-        $pageViews = 47325;
+        // Sample data (you can replace with database later)
 
-        return view('dashboard.index', compact('totalUsers','totalOrders','totalRevenue','pageViews'));
+        $totalUsers = 120;
+        $totalOrders = 75;
+        $totalRevenue = 15400;
+        $pageViews = 980;
+
+        return view('dashboard.index', compact(
+            'totalUsers',
+            'totalOrders',
+            'totalRevenue',
+            'pageViews'
+        ));
     }
 }

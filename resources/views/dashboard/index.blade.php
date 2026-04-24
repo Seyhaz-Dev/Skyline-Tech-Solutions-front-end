@@ -1,6 +1,6 @@
 @extends('components.sidebar')
 
-@section('content')
+    @section('content')
 
 <!-- Header -->
 <div class="flex items-center justify-between bg-white shadow-sm px-6 py-4 mb-6 rounded-xl">

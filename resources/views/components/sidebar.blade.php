@@ -31,7 +31,7 @@
 
                <nav class="space-y-2 text-sm">
 
-    <a href="{{ route('dashboard.index') }}"
+    <a href="/dashboard"
        class="block p-2 rounded-lg hover:bg-slate-700 {{ request()->routeIs('dashboard.index') ? 'bg-slate-700 text-white' : '' }}">
         <i class="fa-solid fa-chart-column"></i>
         Dashboard

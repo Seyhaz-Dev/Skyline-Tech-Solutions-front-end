@@ -22,12 +22,12 @@ Route::get('/', function () {
 });
 
 
-Route::get('/dashboard.index', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
 Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
 Route::get('/rents',[RentsController::class, 'index']);
 
-Route::resource('properties', PropertiesController::class);
+Route::resource('property', PropertyController::class);
 Route::resource('tenants', TenantController::class);
 Route::resource('leases', LeaseController::class);
 Route::resource('payments', PaymentController::class);
@@ -62,6 +62,13 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/admin/login', [AuthController::class, 'login']);
-Route::get('/dashboard', function () {
-    return view('dashboard.index');
-})->name('dashboard');
+
+
+
+Route::resource('properties', PropertyController::class);
+
+
+
+Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
+
+Route::get('/properties/create', [PropertyController::class, 'create'])->name('properties.create');

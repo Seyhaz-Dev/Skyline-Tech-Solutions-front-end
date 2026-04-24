@@ -1,88 +1,74 @@
+@extends('components.sidebar')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Properties</title>
-
-    <!-- Tailwind CSS (IMPORTANT) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-100">
+@section('content')
 
 <div class="p-6">
 
-    <!-- Page Title -->
-    <h1 class="text-2xl font-bold mb-6">
-        Properties
-    </h1>
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
 
-    <!-- GRID CONTAINER -->
+        <h1 class="text-2xl font-bold">
+            Properties
+        </h1>
+
+        <!-- Add Button -->
+        <button class="bg-black text-white px-4 py-2 rounded"
+                onclick="addProperty()">
+            + Add Property
+        </button>
+
+        <!-- Hidden form -->
+    </div>
+
+    <!-- form -->
+
+
+    <div class="flex">
+        <div id="addProperty" class="hidden mt-4 p-4 bg-white shadow rounded justify-center w-[400px] m-auto">
+                <form action="{{ route('properties.store') }}" method="POST">
+                    @csrf
+
+                    <input type="text" name="name">
+                    <input type="text" name="address">
+                    <textarea name="description"></textarea>
+
+                    <button type="submit">
+                        Save
+                    </button>
+                </form>
+        </div>
+    </div>
+
+    <!-- GRID -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
-        <!-- CARD 1 -->
-        <div class="bg-white p-4 shadow rounded">
-            <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-                 class="w-full h-48 object-cover">
+        @foreach ($properties as $property)
 
-            <h2 class="text-lg font-bold mt-2">
-                {{ $modern }}
-            </h2>
+            <x-property
+                modern="{{ $property->title }}"
+                location="{{ $property->location }}"
+                room="{{ $property->beds }} Beds"
+                tworoom="{{ $property->baths }} Baths"
+                number="{{ $property->size }} sqft"
+                total="{{ $property->price }}"
+                image="{{ $property->image }}"
+            />
 
-            <p class="text-gray-500">
-                {{ $location }}
-            </p>
-
-            <div class="flex gap-2 mt-2 text-sm">
-                <span>{{ $room }}</span>
-                <span>{{ $tworoom }}</span>
-                <span>{{ $number }}</span>
-            </div>
-
-            <p class="font-bold mt-2">
-                {{ $total }}
-            </p>
-
-            <button class="mt-3 py-2 px-4 rounded bg-black text-white w-full">
-                View
-            </button>
-        </div>
-
-        <!-- CARD 2 -->
-        <div class="bg-white p-4 shadow rounded">
-            <img src="{{ asset('img/3774-Zenith-Ave-52.jpg') }}"
-                 class="w-full h-48 object-cover">
-
-            <h2 class="text-lg font-bold mt-2">
-                {{ $modern }}
-            </h2>
-
-            <p class="text-gray-500">
-                {{ $location }}
-            </p>
-
-            <div class="flex gap-2 mt-2 text-sm">
-                <span>{{ $room }}</span>
-                <span>{{ $tworoom }}</span>
-                <span>{{ $number }}</span>
-            </div>
-
-            <p class="font-bold mt-2">
-                {{ $total }}
-            </p>
-
-            <button class="mt-3 py-2 px-4 rounded bg-black text-white w-full">
-                View
-            </button>
-        </div>
-
-        <!-- You can paste your other cards here -->
+        @endforeach
 
     </div>
 
 </div>
+<script>
+    function addProperty() {
+        let form = document.getElementById("addProperty");
 
-</body>
-</html>
+        if (form.classList.contains("hidden")) {
+            form.classList.remove("hidden");
+        } else {
+            form.classList.add("hidden");
+        }
+    }
+</script>
 
+@endsection
