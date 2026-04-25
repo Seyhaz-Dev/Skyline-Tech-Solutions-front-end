@@ -39,6 +39,19 @@ Route::get('/dashboard', function () {
 Route::get('/properties', function () {
     return view('properties.index');
 })->name('properties.index');
+Route::get('/tenants', function () {
+    return view('tenants.index');
+})->name('tenants.index');
+Route::get('/leases', function () {
+    return view('leases.index');
+})->name('leases.index');
+Route::get('/payments', function () {
+    return view('payments.index');
+})->name('payments.index');
+Route::get('/maintenance', function () {
+    return view('maintenance.index');
+    
+})->name('maintenance.index');      
 
 Route::get('/dashboard.index', [DashboardController::class, 'index'])->name('dashboard.index');
 
@@ -66,3 +79,17 @@ Route::view('/test', 'layouts.test');
 
 // ================= OPTIONAL =================
 Route::get('/properties.index', [PropertyController::class, 'index']);
+
+
+Route::post('/login', function () {
+
+    $email = request('email');
+    $password = request('password');
+
+    if ($email === 'seyha.@gmail.com' && $password === '123456') {
+        return redirect('/dashboard');
+    }
+
+    return back();
+
+});
