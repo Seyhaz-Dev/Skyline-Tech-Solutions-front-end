@@ -12,6 +12,7 @@ class LeaseController extends Controller
      */
     public function index()
     {
+        return view('leases.index');
         //
     }
 

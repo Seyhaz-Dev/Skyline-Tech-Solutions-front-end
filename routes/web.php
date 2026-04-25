@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
+// Controllers
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RentsController;
 use App\Http\Controllers\PaymentController;
@@ -9,25 +11,43 @@ use App\Http\Controllers\TenantController;
 use App\Http\Controllers\LeaseController;
 use App\Http\Controllers\MaintenanceRequestController;
 use App\Http\Controllers\UserController;
-
-use App\Models\Tenant;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertyController;
 
-use App\Http\Controllers\AuthController;
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+*/
 
-
-
+// Redirect root to login
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
 
+// ================= AUTH =================
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// ================= DASHBOARD =================
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+Route::get('/properties', function () {
+    return view('properties.index');
+})->name('properties.index');
+
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-Route::post('/rents',[RentsController::class, 'store'])->name('rents.store');
-Route::get('/rents',[RentsController::class, 'index']);
 
-Route::resource('property', PropertyController::class);
+// ================= RENTS =================
+Route::get('/rents', [RentsController::class, 'index'])->name('rents.index');
+Route::post('/rents', [RentsController::class, 'store'])->name('rents.store');
+
+Route::resource('properties', PropertiesController::class);
 Route::resource('tenants', TenantController::class);
 Route::resource('leases', LeaseController::class);
 Route::resource('payments', PaymentController::class);
@@ -35,14 +55,14 @@ Route::resource('maintenance', MaintenanceRequestController::class);
 Route::resource('users', UserController::class);
 
 
-Route::get('/hello', function () {
-    return view('hello');
-});
-Route::get('/header', function () {
-    return view('layouts.header');
-});
-Route::get('/rent', [RentsController::class, 'index']);
+// ================= EXTRA VIEWS =================
+Route::view('/contact', 'contact');
+Route::view('/hello', 'hello');
+Route::view('/header', 'components.header');
+Route::view('/test', 'layouts.test');
 
+
+// ================= OPTIONAL =================
 Route::get('/properties.index', [PropertyController::class, 'index']);
 
 
@@ -62,13 +82,6 @@ Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/admin/login', [AuthController::class, 'login']);
-
-
-
-Route::resource('properties', PropertyController::class);
-
-
-
-Route::get('/properties', [PropertyController::class, 'index'])->name('properties.index');
-
-Route::get('/properties/create', [PropertyController::class, 'create'])->name('properties.create');
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
