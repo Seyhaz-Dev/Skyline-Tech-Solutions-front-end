@@ -26,6 +26,13 @@ Route::get('/', function () {
 });
 
 
+// ================= OPTIONAL =================
+Route::get('/properties', [PropertyController::class, 'index']);
+Route::get('/properties/create', [PropertyController::class, 'create']);
+Route::post('/properties', [PropertyController::class, 'store']);
+
+Route::get('/properties/{id}', [PropertyController::class, 'show']); // DETAIL PAGE
+Route::delete('/properties/{id}', [PropertyController::class, 'destroy']); // DELETE
 // ================= AUTH =================
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -47,7 +54,7 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/rents', [RentsController::class, 'index'])->name('rents.index');
 Route::post('/rents', [RentsController::class, 'store'])->name('rents.store');
 
-Route::resource('properties', PropertiesController::class);
+Route::resource('properties', PropertyController::class);
 Route::resource('tenants', TenantController::class);
 Route::resource('leases', LeaseController::class);
 Route::resource('payments', PaymentController::class);
@@ -61,9 +68,6 @@ Route::view('/hello', 'hello');
 Route::view('/header', 'components.header');
 Route::view('/test', 'layouts.test');
 
-
-// ================= OPTIONAL =================
-Route::get('/properties.index', [PropertyController::class, 'index']);
 
 
 Route::get('/contact', fn() => view('contact'));

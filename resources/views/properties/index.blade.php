@@ -4,71 +4,130 @@
 
 <div class="p-6">
 
-    <!-- Header -->
+    <!-- HEADER -->
     <div class="flex justify-between items-center mb-6">
 
-        <h1 class="text-2xl font-bold">
+        <h1 class="text-2xl font-bold text-gray-800">
             Properties
         </h1>
 
-        <!-- Add Button -->
-        <button class="bg-black text-white px-4 py-2 rounded"
-                onclick="addProperty()">
+        <button
+            onclick="toggleForm()"
+            class="bg-black hover:bg-gray-800 text-white px-4 py-2 rounded-lg shadow transition"
+        >
             + Add Property
         </button>
 
-        <!-- Hidden form -->
     </div>
 
-    <!-- form -->
+    <!-- FORM -->
+    <div class="flex justify-center">
 
+        <div id="propertyForm"
+             class="hidden w-[420px] bg-white p-6 rounded-xl shadow-lg">
 
-    <div class="flex">
-        <div id="addProperty" class="hidden mt-4 p-4 bg-white shadow rounded justify-center w-[400px] m-auto">
-                <form action="{{ route('properties.store') }}" method="POST">
-                    @csrf
+            <h2 class="text-lg font-semibold mb-4">
+                Add New Property
+            </h2>
 
-                    <input type="text" name="name">
-                    <input type="text" name="address">
-                    <textarea name="description"></textarea>
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>• {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-                    <button type="submit">
+            <form action="{{ route('properties.store') }}" method="POST">
+                @csrf
+
+                <input type="text" name="name" placeholder="Property Name"
+                    class="w-full border p-2 mb-2 rounded" required>
+
+                <input type="text" name="address" placeholder="Address"
+                    class="w-full border p-2 mb-2 rounded" required>
+
+                <textarea name="description" placeholder="Description"
+                    class="w-full border p-2 mb-2 rounded"></textarea>
+
+                <input type="number" name="room" placeholder="Bedrooms"
+                    class="w-full border p-2 mb-2 rounded">
+
+                <input type="number" name="room2" placeholder="Bathrooms"
+                    class="w-full border p-2 mb-2 rounded">
+
+                <input type="number" name="size" placeholder="Size"
+                    class="w-full border p-2 mb-2 rounded">
+
+                <input type="number" name="total" placeholder="Price"
+                    class="w-full border p-2 mb-4 rounded">
+
+                <div class="flex justify-end gap-2">
+
+                    <button type="button"
+                        onclick="toggleForm()"
+                        class="px-4 py-2 bg-gray-300 rounded">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                        class="px-4 py-2 bg-black text-white rounded">
                         Save
                     </button>
-                </form>
+
+                </div>
+            </form>
+
         </div>
     </div>
 
     <!-- GRID -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
 
         @foreach ($properties as $property)
 
-            <x-property
-                modern="{{ $property->title }}"
-                location="{{ $property->location }}"
-                room="{{ $property->beds }} Beds"
-                tworoom="{{ $property->baths }} Baths"
-                number="{{ $property->size }} sqft"
-                total="{{ $property->price }}"
-                image="{{ $property->image }}"
-            />
+            <div class="bg-white rounded-lg shadow p-4">
+
+                <h2 class="text-lg font-bold">
+                    {{ $property->name }}
+                </h2>
+
+                <p class="text-gray-500">
+                    {{ $property->address }}
+                </p>
+
+                <p class="text-sm mt-2">
+                    {{ $property->room }} Beds • {{ $property->room2 }} Baths
+                </p>
+
+                <p class="text-sm">
+                    {{ $property->size }} sqft
+                </p>
+
+                <p class="font-bold mt-2">
+                    ${{ $property->total }}
+                </p>
+
+                <!-- DETAIL BUTTON -->
+                <a href="/properties/{{ $property->id }}"
+                   class="inline-block mt-3 bg-blue-500 text-white px-3 py-1 rounded">
+                    View Details
+                </a>
+
+            </div>
 
         @endforeach
 
     </div>
 
 </div>
-<script>
-    function addProperty() {
-        let form = document.getElementById("addProperty");
 
-        if (form.classList.contains("hidden")) {
-            form.classList.remove("hidden");
-        } else {
-            form.classList.add("hidden");
-        }
-    }
+<script>
+function toggleForm() {
+    document.getElementById("propertyForm").classList.toggle("hidden");
+}
 </script>
 
 @endsection

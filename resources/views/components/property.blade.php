@@ -1,349 +1,48 @@
-<!-- <div class="bg-white p-4 shadow rounded">
+<div class="bg-white rounded-xl shadow overflow-hidden">
 
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
+    <!-- IMAGE CONTAINER (SPACE FOR IMAGE) -->
+    <div class="h-56 w-full bg-gray-200 overflow-hidden relative flex items-center justify-center">
 
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
+        @if($image)
+            <img src="{{ asset('img/' . $image) }}"
+                 class="w-full h-full object-cover">
+        @else
+            <!-- EMPTY SPACE / PLACEHOLDER -->
+            <span class="text-gray-500 text-sm">
+                No Image Available
+            </span>
+        @endif
 
     </div>
 
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
+    <!-- CONTENT -->
+    <div class="p-4">
 
-</div>
-<div class="bg-white p-4 shadow rounded">
+        <h2 class="text-lg font-bold">
+            {{ $modern }}
+        </h2>
 
-    <img src="{{ asset('img/62ea930cdc7075661821233f_pexels-binyamin-mellish-106399 (1).jpg') }}"
-     class="w-full h-48 object-cover">
+        <p class="text-gray-500 text-sm">
+            {{ $location }}
+        </p>
 
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
+        <div class="text-sm mt-1 text-gray-700">
+            {{ $room }} • {{ $tworoom }}
+        </div>
 
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
+        <div class="text-sm text-gray-500">
+            {{ $number }}
+        </div>
 
-    <div class="flex gap-2 mt-2 text-sm">
+        <p class="font-bold mt-2 text-lg">
+            ${{ $total }}
+        </p>
 
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/3774-Zenith-Ave-52.jpg') }}"
-     class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
+        <a href="/properties/{{ $id }}"
+           class="inline-block mt-3 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+            View Details
+        </a>
 
     </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/w560x373.jpg') }}"
-     class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/Custom Built Homes.webp') }}"
-     class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div>
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div><div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-     class="w-full h-48 object-cover">
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-    <br>
-    <button class="py-2 px-4 rounded bg-black text-white">View</button>
-</div> -->
-
-<div class="bg-white p-4 shadow rounded">
-
-    <img src="{{ asset($image) }}"
-         class="w-full h-48 object-cover">
-
-    <h2 class="text-lg font-bold mt-2">
-        {{ $modern }}
-    </h2>
-
-    <p class="text-gray-500">
-        {{ $location }}
-    </p>
-
-    <div class="flex gap-2 mt-2 text-sm">
-        <span>{{ $room }}</span>
-        <span>{{ $tworoom }}</span>
-        <span>{{ $number }}</span>
-    </div>
-
-    <p class="font-bold mt-2">
-        {{ $total }}
-    </p>
-
-    <button class="mt-3 py-2 px-4 rounded bg-black text-white w-full">
-        View
-    </button>
 
 </div>
