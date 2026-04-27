@@ -11,7 +11,7 @@
 
 <body class="bg-gray-100">
 
-<div class="flex">
+<div class="flex bg-white">
 
     <!-- SIDEBAR -->
     <aside class="w-full fixed h-screen bg-slate-900 text-white">
@@ -19,15 +19,15 @@
     </aside>
 
     <!-- MAIN AREA -->
-    <div class="ml-[500px]  absolute">
+    <div class="flex-1 ml-64 flex flex-col">
 
-        <!-- HEADER -->
-        @include('components.header')
+        <header class="sticky top-0 z-40 bg-white shadow-sm">
+            @include('components.header')
+        </header>
 
-        <!-- CONTENT -->
-        <div class="p-6">
+        <main class="p-6 mt-64 ">
             @yield('content')
-        </div>
+        </main>
 
     </div>
 
