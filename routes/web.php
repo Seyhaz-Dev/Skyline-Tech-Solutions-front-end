@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertyController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,7 +62,6 @@ Route::resource('payments', PaymentController::class);
 Route::resource('maintenance', MaintenanceRequestController::class);
 Route::resource('users', UserController::class);
 
-
 // ================= EXTRA VIEWS =================
 Route::view('/contact', 'contact');
 Route::view('/hello', 'hello');
@@ -89,3 +89,12 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
+
+Route::get('/', function () {
+    return view('payment.index');
+});
+
+// Payment routes
+Route::resource('payments', PaymentController::class);
+Route::post('/payments', [PaymentController::class, 'store'])
+    ->name('payments.store');
