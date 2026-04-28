@@ -3,11 +3,11 @@
 
     @section('content')
 
-
+ 
 <div class="p-6 bg-gradient-to-br from-gray-50 to-gray-100 min-h-screen">
 
     <!-- TOP STATS - Enhanced with icons and hover effects -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 mt-14">
 
         <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 p-6 border-l-4 border-blue-500">
             <div class="flex items-center justify-between">
@@ -214,6 +214,6 @@
     </div>
 
 </div>
->>>>>>> feat/dashboard
+
 
 @endsection
