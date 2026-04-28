@@ -130,8 +130,8 @@ Route::post('/login', function () {
 
 });
 
-<<<<<<< HEAD
-=======
+
+
 
 Route::resource('tenants', TenantController::class);
 
@@ -140,4 +140,4 @@ Route::resource('tenants', TenantController::class);
 Route::get('/tenant', [TenantController::class, 'index'])->name('tenants.index');
 Route::post('/tenant', [TenantController::class, 'store']);
 Route::delete('/tenant/{tenant}', [TenantController::class, 'destroy']);
->>>>>>> c63e204f0cf182fa3f5ad9c6adb6961d699017dd
+
