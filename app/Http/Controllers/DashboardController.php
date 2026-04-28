@@ -8,7 +8,7 @@ class DashboardController extends Controller
 {
     public function index()
     {
-<<<<<<< Updated upstream
+
         // Sample data
         $totalUsers = 2500;
         $totalOrders = 1240;
@@ -16,7 +16,7 @@ class DashboardController extends Controller
         $pageViews = 47325;
 
         return view('dashboard.index', compact('totalUsers','totalOrders','totalRevenue','pageViews'));
-=======
+
         return view('dashboard.index', [
 
             'properties' => Property::latest()->take(5)->get(),
@@ -26,6 +26,6 @@ class DashboardController extends Controller
             'tenantsCount' => Tenant::count(),
             'activeLeases' => Tenant::where('status', 'active')->count(),
         ]);
->>>>>>> Stashed changes
+
     }
 }
