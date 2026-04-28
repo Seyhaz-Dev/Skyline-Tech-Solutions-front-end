@@ -12,12 +12,6 @@ use App\Http\Controllers\Api\MaintenanceRequestController;
 use App\Http\Controllers\Api\AdminController;
 
 
-Route::apiResource('properties', PropertyController::class);
-Route::apiResource('units', UnitController::class);
-Route::apiResource('tenants', TenantController::class);
-Route::apiResource('leases', LeaseController::class);
-Route::apiResource('payments', PaymentController::class);
-Route::apiResource('maintenance-requests', MaintenanceRequestController::class);
 
 
 

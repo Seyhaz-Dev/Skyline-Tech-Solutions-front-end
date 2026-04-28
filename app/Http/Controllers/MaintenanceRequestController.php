@@ -10,7 +10,7 @@ class MaintenanceRequestController extends Controller
     // Get all requests
     public function index()
     {
-        return MaintenanceRequest::all();
+        return view('maintenance.index');
     }
 
     // Create new request
