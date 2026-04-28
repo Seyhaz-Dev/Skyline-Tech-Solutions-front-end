@@ -11,30 +11,30 @@
 
 <body class="bg-gray-100">
 
-<div class="flex bg-white">
+    <div class="flex bg-white">
 
-    <!-- SIDEBAR -->
-    <aside class="w-full fixed h-screen bg-slate-900 text-white">
-        @include('components.sidebar')
-    </aside>
+        <!-- SIDEBAR -->
+        <aside class="w-full h-screen bg-slate-900 text-white">
+            @include('components.sidebar')
+        </aside>
 
-    <!-- MAIN AREA -->
-    <div class="flex-1 ml-64 flex flex-col">
+        <!-- MAIN AREA -->
+        <div class="flex-1 ml-64 flex flex-col">
 
-        <header class="sticky top-0 z-40 bg-white shadow-sm">
-            @include('components.header')
-        </header>
+            <header class="sticky top-0 z-40 bg-white shadow-sm">
+                @include('components.header')
+            </header>
 
-        <main class="p-6 mt-64 ">
-            @yield('content')
-        </main>
+            <main class="p-6 mt-64 ">
+                @yield('content')
+            </main>
+
+        </div>
 
     </div>
-
-</div>
-<script>
-    lucide.createIcons();
-</script>
+    <script>
+        lucide.createIcons();
+    </script>
 
 </body>
 </html>
