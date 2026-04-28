@@ -1,4 +1,5 @@
 <?php
+// app/Models/Tenant.php
 
 namespace App\Models;
 
@@ -10,13 +11,10 @@ class Tenant extends Model
         'name',
         'email',
         'phone',
-        'id_card',
-        'address',
+        'property',
+        'lease_start',
+        'lease_end',
+        'rent',
+        'status',
     ];
-
-   
-    public function unit()
-    {
-        return $this->belongsTo(Unit::class);
-    }
 }

@@ -93,3 +93,12 @@ Route::post('/login', function () {
     return back();
 
 });
+
+
+Route::resource('tenants', TenantController::class);
+
+
+
+Route::get('/tenant', [TenantController::class, 'index'])->name('tenants.index');
+Route::post('/tenant', [TenantController::class, 'store']);
+Route::delete('/tenant/{tenant}', [TenantController::class, 'destroy']);
