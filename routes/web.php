@@ -14,6 +14,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PropertyController;
 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -74,7 +75,6 @@ Route::resource('payments', PaymentController::class);
 Route::resource('maintenance', MaintenanceRequestController::class);
 Route::resource('users', UserController::class);
 
-
 // ================= EXTRA VIEWS =================
 Route::view('/contact', 'contact');
 Route::view('/hello', 'hello');
@@ -83,31 +83,8 @@ Route::view('/test', 'layouts.test');
 
 
 
-// ================= OPTIONAL =================
-Route::get('/properties.index', [PropertyController::class, 'index']);
 
 
-Route::post('/login', function () {
-
-    $email = request('email');
-    $password = request('password');
-
-    if ($email === 'seyha.@gmail.com' && $password === '123456') {
-        return redirect('/dashboard');
-    }
-
-    return back();
-
-});
-
-
-Route::resource('tenants', TenantController::class);
-
-
-
-Route::get('/tenant', [TenantController::class, 'index'])->name('tenants.index');
-Route::post('/tenant', [TenantController::class, 'store']);
-Route::delete('/tenant/{tenant}', [TenantController::class, 'destroy']);
 
 
 Route::get('/contact', fn() => view('contact'));
@@ -129,4 +106,64 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
+
+Route::get('/', function () {
+    return view('payment.index');
+});
+
+// Payment routes
+Route::resource('payments', PaymentController::class);
+Route::post('/payments', [PaymentController::class, 'store'])
+    ->name('payments.store');
+
+
+Route::get('/properties.index', [PropertyController::class, 'index']);
+
+
+Route::post('/login', function () {
+
+    $email = request('email');
+    $password = request('password');
+
+    if ($email === 'seyha.@gmail.com' && $password === '123456') {
+        return redirect('/dashboard');
+    }
+
+    return back();
+
+});
+
+
+
+
+Route::resource('tenants', TenantController::class);
+
+
+
+Route::get('/tenant', [TenantController::class, 'index'])->name('tenants.index');
+Route::post('/tenant', [TenantController::class, 'store']);
+Route::delete('/tenant/{tenant}', [TenantController::class, 'destroy']);
+
+
+
+Route::get('/contact', fn() => view('contact'));
+Route::get('/hello', fn() => view('hello'));
+Route::get('/header', fn() => view('layouts.header'));
+Route::get('/test', fn() => view('layouts.test'));
+
+
+// Redirect root to login page
+Route::get('/', function () {
+    return redirect()->route('login');
+});
+
+// Login/Logout routes
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/admin/login', [AuthController::class, 'login']);
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+
 

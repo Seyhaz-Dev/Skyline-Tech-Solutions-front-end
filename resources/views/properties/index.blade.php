@@ -160,7 +160,7 @@
 
                 <!-- BUTTON -->
                 <a href="{{ route('properties.show', $property->id) }}"
-                   class="block text-center mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition">
+                   class="block text-center mt-3 bg-black hover:bg-blue-600 text-white py-2 rounded-lg transition">
 
                     View Details
 
