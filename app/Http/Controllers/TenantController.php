@@ -1,50 +1,45 @@
 <?php
+// app/Http/Controllers/TenantController.php
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Tenant;
 use Illuminate\Http\Request;
 
 class TenantController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('tenants.index');
-        //
+        $tenants = Tenant::latest()->paginate(10);
+        return view('tenants.index', compact('tenants'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+        ]);
+
+        Tenant::create($request->all());
+
+        return redirect()->route('tenants.index')
+            ->with('success', 'Tenant created successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+    public function update(Request $request, Tenant $tenant)
     {
-        //
+        $tenant->update($request->all());
+
+        return redirect()->route('tenants.index')
+            ->with('success', 'Tenant updated successfully');
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function destroy(Tenant $tenant)
     {
-        //
-    }
+        $tenant->delete();
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->route('tenants.index')
+            ->with('success', 'Tenant deleted');
     }
 }
