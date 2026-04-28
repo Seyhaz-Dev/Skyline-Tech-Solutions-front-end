@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Property;
+use App\Models\Tenant;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // Sample data (you can replace with database later)
-
-        $totalUsers = 120;
-        $totalOrders = 75;
-        $totalRevenue = 15400;
-        $pageViews = 980;
-
-        return view('dashboard.index', compact(
-            'totalUsers',
-            'totalOrders',
-            'totalRevenue',
-            'pageViews'
-        ));
+        return view('dashboard.index', [
+            'properties' => Property::latest()->take(5)->get(),
+            'tenants' => Tenant::latest()->take(5)->get(),
+            'propertiesCount' => Property::count(),
+            'tenantsCount' => Tenant::count(),
+            'activeLeases' => Tenant::where('status', 'active')->count(),
+        ]);
     }
 }

@@ -17,8 +17,13 @@
 
     <!-- FORM CARD -->
     <form action="{{ route('payments.store') }}"
+<<<<<<< HEAD
           method="POST"
           class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+=======
+        method="POST"
+        class="bg-white p-8 rounded-2xl shadow-lg space-y-6">
+>>>>>>> feat/dashboard
 
         @csrf
 
@@ -32,6 +37,7 @@
                 </label>
 
                 <select name=""
+<<<<<<< HEAD
                         class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
 
                     <option value="">-- Choose Lease --</option>
@@ -40,14 +46,41 @@
                         <option value="{{ $lease->id }}">
                             Lease #{{ $lease->id }}
                         </option>
+=======
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+
+                    <option value="">-- Choose Lease --</option>
+
+                    <option value="6_months">6 Months</option>
+                    <option value="1_year">1 Year</option>
+                    <option value="2_years">2 Years</option>
+                    <option value="3_years">3 Years</option>
+
+                    <option value="monthly">Monthly</option>
+                    <option value="weekly">Weekly</option>
+
+                    <option value="flexible">Flexible</option>
+
+
+                    @foreach($leases as $lease)
+                    <option value="{{ $lease->id }}">
+                        Lease #{{ $lease->id }}
+                    </option>
+>>>>>>> feat/dashboard
                     @endforeach
 
                 </select>
 
                 @error('lease_id')
+<<<<<<< HEAD
                     <p class="text-red-500 text-sm mt-1">
                         {{ $message }}
                     </p>
+=======
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+>>>>>>> feat/dashboard
                 @enderror
             </div>
 
@@ -58,6 +91,7 @@
                 </label>
 
                 <input type="number"
+<<<<<<< HEAD
                        name="amount"
                        step="0.01"
                        placeholder="Enter payment amount"
@@ -68,6 +102,18 @@
                     <p class="text-red-500 text-sm mt-1">
                         {{ $message }}
                     </p>
+=======
+                    name="amount"
+                    step="0.01"
+                    placeholder="Enter payment amount"
+                    value="{{ old('amount') }}"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+
+                @error('amount')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+>>>>>>> feat/dashboard
                 @enderror
             </div>
 
@@ -78,6 +124,7 @@
                 </label>
 
                 <input type="date"
+<<<<<<< HEAD
                        name="payment_date"
                        value="{{ old('payment_date') }}"
                        class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
@@ -86,6 +133,16 @@
                     <p class="text-red-500 text-sm mt-1">
                         {{ $message }}
                     </p>
+=======
+                    name="payment_date"
+                    value="{{ old('payment_date') }}"
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+
+                @error('payment_date')
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+>>>>>>> feat/dashboard
                 @enderror
             </div>
 
@@ -96,7 +153,11 @@
                 </label>
 
                 <select name="payment_method"
+<<<<<<< HEAD
                         class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+=======
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+>>>>>>> feat/dashboard
 
                     <option value="">-- Select Method --</option>
                     <option value="cash">Cash</option>
@@ -107,9 +168,15 @@
                 </select>
 
                 @error('payment_method')
+<<<<<<< HEAD
                     <p class="text-red-500 text-sm mt-1">
                         {{ $message }}
                     </p>
+=======
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+>>>>>>> feat/dashboard
                 @enderror
             </div>
 
@@ -120,7 +187,11 @@
                 </label>
 
                 <select name="status"
+<<<<<<< HEAD
                         class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+=======
+                    class="w-full border border-gray-300 p-2 rounded-lg focus:ring-2 focus:ring-black">
+>>>>>>> feat/dashboard
 
                     <option value="paid">Paid</option>
                     <option value="pending">Pending</option>
@@ -129,9 +200,15 @@
                 </select>
 
                 @error('status')
+<<<<<<< HEAD
                     <p class="text-red-500 text-sm mt-1">
                         {{ $message }}
                     </p>
+=======
+                <p class="text-red-500 text-sm mt-1">
+                    {{ $message }}
+                </p>
+>>>>>>> feat/dashboard
                 @enderror
             </div>
 
@@ -141,12 +218,20 @@
         <div class="flex justify-end gap-3 pt-4 border-t">
 
             <a href="{{ route('payments.index') }}"
+<<<<<<< HEAD
                class="px-5 py-2 rounded-lg border hover:bg-gray-100">
+=======
+                class="px-5 py-2 rounded-lg border hover:bg-gray-100">
+>>>>>>> feat/dashboard
                 Cancel
             </a>
 
             <button type="submit"
+<<<<<<< HEAD
                     class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg shadow">
+=======
+                class="bg-black hover:bg-gray-800 text-white px-6 py-2 rounded-lg shadow">
+>>>>>>> feat/dashboard
                 Save Payment
             </button>
 

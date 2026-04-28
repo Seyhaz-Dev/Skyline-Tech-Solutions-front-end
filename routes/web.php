@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 // Controllers
 use App\Http\Controllers\DashboardController;
+// use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RentsController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PropertiesController;
@@ -68,6 +69,43 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/rents', [RentsController::class, 'index'])->name('rents.index');
 Route::post('/rents', [RentsController::class, 'store'])->name('rents.store');
 
+Route::get('/properties/{id}', [PropertyController::class, 'show']); // DETAIL PAGE
+Route::delete('/properties/{id}', [PropertyController::class, 'destroy']); // DELETE
+// ================= AUTH =================
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
+// ================= DASHBOARD =================
+Route::get('/dashboard', function () {
+    return view('dashboard.index');
+})->name('dashboard');
+Route::get('/properties', function () {
+    return view('properties.index');
+})->name('properties.index');
+Route::get('/tenants', function () {
+    return view('tenants.index');
+})->name('tenants.index');
+Route::get('/leases', function () {
+    return view('leases.index');
+})->name('leases.index');
+Route::get('/payments', function () {
+    return view('payments.index');
+})->name('payments.index');
+Route::get('/maintenance', function () {
+    return view('maintenance.index');
+    
+})->name('maintenance.index');      
+
+// Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+// ================= RENTS =================
+Route::get('/rents', [RentsController::class, 'index'])->name('rents.index');
+Route::post('/rents', [RentsController::class, 'store'])->name('rents.store');
+
+
 Route::resource('properties', PropertyController::class);
 Route::resource('tenants', TenantController::class);
 Route::resource('leases', LeaseController::class);
@@ -101,6 +139,11 @@ Route::get('/', function () {
 // Login/Logout routes
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
+
+
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::post('/admin/login', [AuthController::class, 'login']);
 Route::get('/dashboard', function () {
@@ -165,5 +208,13 @@ Route::post('/admin/login', [AuthController::class, 'login']);
 Route::get('/dashboard', function () {
     return view('dashboard.index');
 })->name('dashboard');
+
+
+Route::get('/', function () {
+    return view('payment.index');
+});
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
 
 
