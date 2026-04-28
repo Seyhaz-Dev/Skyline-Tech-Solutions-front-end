@@ -6,23 +6,25 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
-   public function up(): void
-{
-    Schema::create('properties', function (Blueprint $table) {
-        $table->id();
-        $table->string('name');
-        $table->string('address');
-        $table->text('description')->nullable();
-        $table->timestamps();
-    });
-}
+    public function up(): void
+    {
+        Schema::create('properties', function (Blueprint $table) {
+            $table->id();
 
-    /**
-     * Reverse the migrations.
-     */
+            $table->string('name');
+            $table->string('address');
+            $table->text('description')->nullable();
+
+            // Property fields
+            $table->string('room')->nullable();
+            $table->string('room2')->nullable();
+            $table->string('size')->nullable();
+            $table->string('total')->nullable();
+
+            $table->timestamps();
+        });
+    }
+
     public function down(): void
     {
         Schema::dropIfExists('properties');

@@ -1,88 +1,188 @@
+@extends('components.sidebar')
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Properties</title>
-
-    <!-- Tailwind CSS (IMPORTANT) -->
-    <script src="https://cdn.tailwindcss.com"></script>
-</head>
-
-<body class="bg-gray-100">
+@section('content')
 
 <div class="p-6">
 
-    <!-- Page Title -->
-    <h1 class="text-2xl font-bold mb-6">
-        Properties
-    </h1>
+    <!-- HEADER -->
+    <div class="flex justify-between items-center mb-6">
 
-    <!-- GRID CONTAINER -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <h1 class="text-2xl font-bold text-gray-800">
+            Properties
+        </h1>
 
-        <!-- CARD 1 -->
-        <div class="bg-white p-4 shadow rounded">
-            <img src="{{ asset('img/SOHL0122005_1560x880_desktop.jpg') }}"
-                 class="w-full h-48 object-cover">
+        <button
+            onclick="toggleForm()"
+            class="bg-black hover:bg-gray-800 text-white px-5 py-2 rounded-lg shadow transition"
+        >
+            + Add Property
+        </button>
 
-            <h2 class="text-lg font-bold mt-2">
-                {{ $modern }}
+    </div>
+
+    <!-- FORM -->
+    <div class="flex justify-center">
+
+        <div id="propertyForm"
+             class="hidden w-[420px] bg-white p-6 rounded-xl shadow-lg border">
+
+            <h2 class="text-lg font-semibold mb-4 text-gray-700">
+                Add New Property
             </h2>
 
-            <p class="text-gray-500">
-                {{ $location }}
-            </p>
+            @if ($errors->any())
+                <div class="bg-red-100 text-red-600 p-3 rounded mb-4">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>• {{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-            <div class="flex gap-2 mt-2 text-sm">
-                <span>{{ $room }}</span>
-                <span>{{ $tworoom }}</span>
-                <span>{{ $number }}</span>
-            </div>
+            <form action="{{ route('properties.store') }}"
+                  method="POST">
 
-            <p class="font-bold mt-2">
-                {{ $total }}
-            </p>
+                @csrf
 
-            <button class="mt-3 py-2 px-4 rounded bg-black text-white w-full">
-                View
-            </button>
+                <input type="text"
+                       name="name"
+                       placeholder="Property Name"
+                       class="w-full border p-2 mb-2 rounded focus:ring focus:ring-blue-200"
+                       required>
+
+                <input type="text"
+                       name="address"
+                       placeholder="Address"
+                       class="w-full border p-2 mb-2 rounded focus:ring focus:ring-blue-200"
+                       required>
+
+                <textarea name="description"
+                          placeholder="Description"
+                          class="w-full border p-2 mb-2 rounded focus:ring focus:ring-blue-200"></textarea>
+
+                <input type="number"
+                       name="room"
+                       placeholder="Bedrooms"
+                       class="w-full border p-2 mb-2 rounded">
+
+                <input type="number"
+                       name="room2"
+                       placeholder="Bathrooms"
+                       class="w-full border p-2 mb-2 rounded">
+
+                <input type="number"
+                       name="size"
+                       placeholder="Size (sqft)"
+                       class="w-full border p-2 mb-2 rounded">
+
+                <input type="number"
+                       name="total"
+                       placeholder="Price ($)"
+                       class="w-full border p-2 mb-4 rounded">
+
+                <div class="flex justify-end gap-2">
+
+                    <button type="button"
+                        onclick="toggleForm()"
+                        class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                        class="px-4 py-2 bg-black text-white rounded hover:bg-gray-800">
+                        Save
+                    </button>
+
+                </div>
+
+            </form>
+
         </div>
 
-        <!-- CARD 2 -->
-        <div class="bg-white p-4 shadow rounded">
-            <img src="{{ asset('img/3774-Zenith-Ave-52.jpg') }}"
-                 class="w-full h-48 object-cover">
+    </div>
 
-            <h2 class="text-lg font-bold mt-2">
-                {{ $modern }}
-            </h2>
+    <!-- GRID -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 mt-6">
 
-            <p class="text-gray-500">
-                {{ $location }}
-            </p>
+        @foreach ($properties as $property)
 
-            <div class="flex gap-2 mt-2 text-sm">
-                <span>{{ $room }}</span>
-                <span>{{ $tworoom }}</span>
-                <span>{{ $number }}</span>
+        <div class="bg-white rounded-xl shadow hover:shadow-xl transition overflow-hidden">
+
+            <!-- IMAGE -->
+            <div class="h-56 w-full bg-gray-200 overflow-hidden">
+
+                @if($property->image)
+
+                    <img src="{{ asset($property->image) }}"
+                         class="w-full h-full object-cover hover:scale-105 transition duration-300">
+
+                @else
+
+                    <img src="{{ asset('img/3774-Zenith-Ave-52.jpg') }}"
+                         class="w-full h-full object-cover">
+
+                @endif
+
             </div>
 
-            <p class="font-bold mt-2">
-                {{ $total }}
-            </p>
+            <!-- CONTENT -->
+            <div class="p-4">
 
-            <button class="mt-3 py-2 px-4 rounded bg-black text-white w-full">
-                View
-            </button>
+                <h2 class="text-lg font-bold text-gray-800">
+                    {{ $property->name }}
+                </h2>
+
+                <p class="text-gray-500 text-sm">
+                    {{ $property->address }}
+                </p>
+
+                <!-- DETAILS -->
+                <div class="flex justify-between text-sm text-gray-600 mt-2">
+
+                    <span>
+                         {{ $property->room }} Beds
+                    </span>
+
+                    <span>
+                         {{ $property->room2 }} Baths
+                    </span>
+
+                </div>
+
+                <p class="text-sm text-gray-600">
+                     {{ $property->size }} sqft
+                </p>
+
+                <p class="font-bold text-lg mt-2">
+                    ${{ number_format($property->total) }}
+                </p>
+
+                <!-- BUTTON -->
+                <a href="{{ route('properties.show', $property->id) }}"
+                   class="block text-center mt-3 bg-blue-500 hover:bg-blue-600 text-white py-2 rounded-lg transition">
+
+                    View Details
+
+                </a>
+
+            </div>
+
         </div>
 
-        <!-- You can paste your other cards here -->
+        @endforeach
 
     </div>
 
 </div>
 
-</body>
-</html>
+<script>
+function toggleForm() {
+    document
+        .getElementById("propertyForm")
+        .classList
+        .toggle("hidden");
+}
+</script>
 
+@endsection

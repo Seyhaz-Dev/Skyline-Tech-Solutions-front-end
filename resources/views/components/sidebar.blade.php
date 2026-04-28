@@ -31,13 +31,13 @@
 
                <nav class="space-y-2 text-sm">
 
-    <a href="{{ route('dashboard.index') }}"
+    <a href="/dashboard"
        class="block p-2 rounded-lg hover:bg-slate-700 {{ request()->routeIs('dashboard.index') ? 'bg-slate-700 text-white' : '' }}">
         <i class="fa-solid fa-chart-column"></i>
         Dashboard
     </a>
 
-    <a href="/property"
+    <a href="/properties"
        class="block p-2 rounded-lg hover:bg-slate-700 {{ request()->routeIs('properties.*') ? 'bg-slate-700 text-white' : '' }}">
         <i class="fa-regular fa-house"></i>
         Properties

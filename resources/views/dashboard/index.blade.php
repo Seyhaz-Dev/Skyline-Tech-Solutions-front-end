@@ -1,7 +1,7 @@
 @extends('components.sidebar')
 @extends('components.header')
 
-@section('content')
+    @section('content')
 
 
 
