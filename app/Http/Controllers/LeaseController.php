@@ -1,50 +1,34 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Models\Lease;
+use App\Models\Tenant;
+use App\Models\Property;
 use Illuminate\Http\Request;
 
 class LeaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        return view('leases.index');
-        //
+        $leases = Lease::with(['tenant','property'])->latest()->get();
+        $tenants = Tenant::all();
+        $properties = Property::all();
+
+        return view('leases.index', compact('leases','tenants','properties'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'tenant_id' => 'required',
+            'property_id' => 'required',
+            'start_date' => 'required',
+            'end_date' => 'required',
+            'rent' => 'required',
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        Lease::create($request->all());
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return redirect()->back()->with('success', 'Lease created!');
     }
 }
